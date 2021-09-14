@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <input id="x" placeholder="x" type="text" inputmode="numeric" />
+    </br>
+    <input id="y" placeholder="y" type="text" inputmode="numeric" />
+    </br>
+    <button onclick="send()">Result</button>
+    <p>Result</p>
+    <input id="result" type="text" inputmode="numeric" readonly />
+    
+    <script type="text/javascript">
+        function send() {
+            let req = new XMLHttpRequest();
+            req.open('POST', '');
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            req.onreadystatechange = function () {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                    document.getElementById("result").value = this.responseText;
+                }
+            }
+            req.send('x=' + document.getElementById("x").value + '&y=' + document.getElementById("y").value);
+        }
+    </script>
+</body>
+</html>
